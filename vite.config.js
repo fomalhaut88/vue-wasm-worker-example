@@ -7,6 +7,9 @@ import wasm from "vite-plugin-wasm"
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    target: 'esnext',
+  },
   plugins: [
     vue(),
     vueDevTools(),
@@ -16,5 +19,11 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
+  },
+  worker: {
+    format: 'es',
+    plugins: [
+      wasm(),
+    ],
   },
 })
